@@ -5,6 +5,7 @@ Was ist alles zu tun?
 
 (2) Display
 + über HDMI auf Raspberry PI4 geschenkt
++ Auflösung 1024 x 600
 
 (3) Sensoren
 + BME280 laufen über I2C, zwei verschiedene Sensoren lassen sich über Pin-Induzierte Adressänderung realisieren
@@ -30,6 +31,8 @@ SSH-Verbindung auf Raspberry einrichten, um komfortabler auf ihm entwickeln zu k
 - SSH über Settings aktiviert
 - IP-Adresse des PI herausfinden (Fritz oder hostname -I auf dem PI)
 - ssh username@IP-ADRESS, Passwort wird erfragt, das wars. :)
+- ssh -Y username@IP-ADRESS, dann wird auch der X-Server durchgereicht, also z.B. mit "thonny" kann man den Editor auf dem PI aufmachen
+- davor hatte ich sudo apt-get install tightvncserver // tightvncserver // vncserver :1 -geometry 1920x1080 -depth 24 ausgeführt, aber denke darauf sollte es nicht ankommen.
 
 
 (9)
