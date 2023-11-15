@@ -15,6 +15,7 @@ VCC, GND, SCL, SDA, zwei Leitungen sind noch frei
 (4)
 Anbindung der Abfahrtsanzeige der DVB
 
+
 (5)
 Anbindung von Wetter-API(s)
 
@@ -26,6 +27,10 @@ Datenbank aufsetzen, wo die Sensordaten landen
 
 (8)
 SSH-Verbindung auf Raspberry einrichten, um komfortabler auf ihm entwickeln zu können
+- SSH über Settings aktiviert
+- IP-Adresse des PI herausfinden (Fritz oder hostname -I auf dem PI)
+- ssh username@IP-ADRESS, Passwort wird erfragt, das wars. :)
+
 
 (9)
 MQTT-Broker?
