@@ -15,10 +15,13 @@ VCC, GND, SCL, SDA, zwei Leitungen sind noch frei
 
 (4)
 Anbindung der Abfahrtsanzeige der DVB
-
++ DVB-Monitor angebunden
 
 (5)
 Anbindung von Wetter-API(s)
++ OpenWeatherAPI angebunden
+  https://rapidapi.com/blog/openweathermap-api-overview/python/
+  https://www.instructables.com/Get-Weather-Data-Using-Python-and-Openweather-API/
 
 (6)
 Anbindung von Regenradar, etc.
@@ -37,6 +40,19 @@ SSH-Verbindung auf Raspberry einrichten, um komfortabler auf ihm entwickeln zu k
 
 (9)
 MQTT-Broker?
++ 
 
 (10)
+Anzeige-App https://kivy.org/
+https://buildmedia.readthedocs.org/media/pdf/kivy/latest/kivy.pdf
+
+
+(11)
 Backup-Strategie
+
+
+
+Megacooles ähnliches Projekt:
++  https://www.haraldkreuzer.net/aktuelles/bauanleitung-raspberry-pi-wetterstation-mit-wettervorhersage-und-esp32-funksensoren
++  und auf Github: https://github.com/HarryVienna/WeatherStation-Raspberry-Pi-base-station
+
