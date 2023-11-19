@@ -1,2 +1,4 @@
 RPI.BME280
 dvb
+python-dotenv
+requests>=2.31.0
