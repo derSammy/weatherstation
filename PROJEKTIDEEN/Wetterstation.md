@@ -50,6 +50,9 @@ https://buildmedia.readthedocs.org/media/pdf/kivy/latest/kivy.pdf
 (11)
 Backup-Strategie
 
+(12)
+PWM-Luefter-Steuerung
+https://www.raspberry-pi-geek.de/ausgaben/rpg/2022/08/temperaturabhaengige-lueftersteuerung-per-pwm/
 
 
 Megacooles ähnliches Projekt:
