@@ -28,6 +28,8 @@ Anbindung von Regenradar, etc.
 
 (7)
 Datenbank aufsetzen, wo die Sensordaten landen
+InfluxDB
+https://pimylifeup.com/raspberry-pi-influxdb/
 
 (8)
 SSH-Verbindung auf Raspberry einrichten, um komfortabler auf ihm entwickeln zu können
@@ -36,6 +38,8 @@ SSH-Verbindung auf Raspberry einrichten, um komfortabler auf ihm entwickeln zu k
 - ssh username@IP-ADRESS, Passwort wird erfragt, das wars. :)
 - ssh -Y username@IP-ADRESS, dann wird auch der X-Server durchgereicht, also z.B. mit "thonny" kann man den Editor auf dem PI aufmachen
 - davor hatte ich sudo apt-get install tightvncserver // tightvncserver // vncserver :1 -geometry 1920x1080 -depth 24 ausgeführt, aber denke darauf sollte es nicht ankommen.
+Vgl. auch hier:
+https://www.heise.de/tipps-tricks/Raspberry-Pi-SSH-einrichten-so-geht-s-4190645.html
 
 
 (9)
@@ -46,6 +50,25 @@ MQTT-Broker?
 Anzeige-App https://kivy.org/
 https://buildmedia.readthedocs.org/media/pdf/kivy/latest/kivy.pdf
 
+Kivy-Framework:
+- sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+- sudo apt-get install libmtdev1
+beides habe ich ausgespart; weil die Kivy-Doku von diesem Weg abzuraten scheint:
+https://kivy.org/doc/stable/gettingstarted/installation.html#install-pip
+python -m pip install "kivy[base]" kivy_examples
+das habe ich aber ausgeführt, bzw. auch in die requirements.txt aufgenommen
+Zusätzlich habe ich noch die sdl-Dependencies handisch installiert. Dazu zuerst:
+sudo apt-get install cmake
+und dann wie hier beschrieben:
+https://kivy.org/doc/stable/gettingstarted/installation.html#install-pip
+
+
+(10a) System-Optimierungen
+https://www.haraldkreuzer.net/aktuelles/bauanleitung-raspberry-pi-wetterstation-mit-wettervorhersage-und-esp32-funksensoren
+
+(10b) Python-Umgebung mit System-Start aktivieren.
+
+(10c) Projekt Dockerisieren
 
 (11)
 Backup-Strategie

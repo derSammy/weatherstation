@@ -1,3 +1,5 @@
+
+Polbelgung des Anschlusskabels und wie es auf den Raspi gesteckt wird
 braun ... Pin 2 ... 5V
 rot   ... Pin 1 ... 3,3V
 orange... Pin 3 ... SDA (I2C)
@@ -14,3 +16,5 @@ rot-orange-gleb-grün-schwarz-grau
 
 Farbreihenfolge Rückseite:
 braun-leer-leer-blau-lila-weiß
+
+
