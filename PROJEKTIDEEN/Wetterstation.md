@@ -1,7 +1,68 @@
 Was ist alles zu tun?
 
+(0) Raspian Image...
+like here:
+https://www.youtube.com/watch?v=1s4sBoDej4g
+
+Imager: 64bit, mit Desktop, SSH via User&PW
+normal installiert, mittels GUI, 64bit (recommended), SSH aktiviert
+Nutzername&PW werden hier vergeben.
+
+Raspi booten!
+
+(01)
+IP-Adresse vom RaspberryPi einrichten
+hostname -I -> aktuelle IP-Adresse. Bei mir: 192.168.178.25
+In Fritzbox: Haken gesetzt bei "immer die gleiche IPv4-Adresse zuweisen"
+vgl. ggf. auch https://www.elektronik-kompendium.de/sites/raspberry-pi/1912151.htm
+
+(02) Raspi über SSH
+ssh <UserName>@192.168.178.25
+-> Warnung
+ssh-keygen -f "/home/<UserName>/.ssh/known_hosts" -R "192.168.178.25"
+
+ssh <UserName>@192.168.178.25
+Updates installieren (braucht Passwort vom User, was beim Imaging eingerichtet wurde)
+sudo raspi-config
+Locale habe ich geändert (de-UTF8), und TimeZone auf Berlin
+Advanced Options / Expand Filesystem
+
+sudo apt update
+(sudo apt list --upgradeable)
+sudo apt upgrade
+
+sudo rpi-update
+--> wird abgeraten, dann mache ich das auch nicht
+
+sudo reboot
+
+(02)
+Docker-Installation:
+sudo apt install curl --> sollte schon drauf sein
+curl -fsSL https://get.docker.com -o get-docker.sh
+ls -l (Kontrolle, ob geklappt)
+
+sudo groupadd docker (sollte überflüssig sein)
+sudo usermod -aG docker $USER
+
+Konsole schließen, neu via SSH aufschalten
+
+docker run hello-world sollte sich das passende Image ziehen und laufen. :)
+
+docker volume create portainer_data
+
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+
+http://192.168.178.25:9000/
+Passwort neu setzen, ist im KeePass
+
+
 (1) Projektsetup
 + Github-Einrichtung mittels SSH
+https://docs.github.com/de/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+
 
 (2) Display
 + über HDMI auf Raspberry PI4 geschenkt
@@ -44,7 +105,9 @@ https://www.heise.de/tipps-tricks/Raspberry-Pi-SSH-einrichten-so-geht-s-4190645.
 
 (9)
 MQTT-Broker?
-+ 
++ mosquitto scheint die verbreiteste Implementierung. Gibt es auch dockerisiert:
+https://hub.docker.com/_/eclipse-mosquitto
+Image: eclipse-mosquitto
 
 (10)
 Anzeige-App https://kivy.org/
@@ -76,9 +139,17 @@ Backup-Strategie
 (12)
 PWM-Luefter-Steuerung
 https://www.raspberry-pi-geek.de/ausgaben/rpg/2022/08/temperaturabhaengige-lueftersteuerung-per-pwm/
+Vitaldaten vom System lassen sich mit dem psutil-Paket auslesen
+Siehe auch hier: https://indibit.de/raspberry-pi-cpu-auslastung-als-diagramm-auf-oled-display/
 
 
 Megacooles ähnliches Projekt:
 +  https://www.haraldkreuzer.net/aktuelles/bauanleitung-raspberry-pi-wetterstation-mit-wettervorhersage-und-esp32-funksensoren
 +  und auf Github: https://github.com/HarryVienna/WeatherStation-Raspberry-Pi-base-station
+
+
+DEV-Aspects:
+USE GPIO-Pins from docker:
+https://iotbytes.wordpress.com/create-your-first-docker-container-for-raspberry-pi-to-blink-an-led/
+Entscheidend: Die Pins sind wohl irgendein File, das muss entsprechend in den Container mit Lese/Schreibrechten hineingemountet werden.
 
