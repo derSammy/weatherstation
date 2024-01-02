@@ -61,6 +61,31 @@ Passwort neu setzen, ist im KeePass
 (1) Projektsetup
 + Github-Einrichtung mittels SSH
 https://docs.github.com/de/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+Solange noch Dev-Code auszuchecken ist, müssen wir den Raspi befähigen mit GitHub interagieren zu können.
+Vermutlich ist es möglich, dem Raspi direkt einen ssh-Key bei der Image-Erstellung verpassen zu können, dann könnte man den nehmen.
+Ich bin den Weg über die Neuerstellung gegangen:
+
+ssh-keygen -t ed25519 -C "your_email@example.com" (via SSH auf dem Pi)
+
+Enter (default-Pfad für die Dateiablage von Public- und Private-Key nutzen)
+
+Passphrase festlegen
+
+eval "$(ssh-agent -s)"
+-> man bekommt eine pid, unter welchem Prozess ssh-agent läuft
+
+ssh-add ~/.ssh/id_ed25519
+dies fügt diese Datei der ssh-Key-Verwaltung hinzu.
+
+Jetzt muss der Key noch bei Github hinterlegt werden. Dazu hab ich die id_ed25519.pub-Datei geöffnet:
+cd /home/samuel/.ssh
+nano id_ed25519.pub
+-> Inhalt kopieren und bei Github hinterlegen
+ssh-ed25519 AAASomeStrangeStringmRH email@provider.de
+
+auf Rasperry:
+mkdir WeatherStation
+cd WeatherStation
 
 
 
@@ -101,6 +126,7 @@ SSH-Verbindung auf Raspberry einrichten, um komfortabler auf ihm entwickeln zu k
 - davor hatte ich sudo apt-get install tightvncserver // tightvncserver // vncserver :1 -geometry 1920x1080 -depth 24 ausgeführt, aber denke darauf sollte es nicht ankommen.
 Vgl. auch hier:
 https://www.heise.de/tipps-tricks/Raspberry-Pi-SSH-einrichten-so-geht-s-4190645.html
+
 
 
 (9)
