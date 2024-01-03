@@ -57,6 +57,10 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 http://192.168.178.25:9000/
 Passwort neu setzen, ist im KeePass
 
+(02A)
+Installation über IOT-Stack
+https://learnembeddedsystems.co.uk/easy-raspberry-pi-iot-server
+
 
 (1) Projektsetup
 + Github-Einrichtung mittels SSH
