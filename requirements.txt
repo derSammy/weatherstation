@@ -1,4 +1,6 @@
-RPI.BME280
+gpiozero
+RPi.bme280
+RPi.GPIO
 dvb
 python-dotenv
 requests>=2.31.0
