@@ -171,6 +171,11 @@ PWM-Luefter-Steuerung
 https://www.raspberry-pi-geek.de/ausgaben/rpg/2022/08/temperaturabhaengige-lueftersteuerung-per-pwm/
 Vitaldaten vom System lassen sich mit dem psutil-Paket auslesen
 Siehe auch hier: https://indibit.de/raspberry-pi-cpu-auslastung-als-diagramm-auf-oled-display/
+Script läuft, Dockerisierung fehlt noch
+
+(13) Heimdall als Application Management System für alles auf dem Raspy nutzen
+https://heimdall.site/
+https://blog.berrybase.de/docker-auf-dem-raspberry-pi-basics/
 
 
 Megacooles ähnliches Projekt:
