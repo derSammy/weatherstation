@@ -174,6 +174,7 @@ Vitaldaten vom System lassen sich mit dem psutil-Paket auslesen
 Siehe auch hier: https://indibit.de/raspberry-pi-cpu-auslastung-als-diagramm-auf-oled-display/
 Script läuft
 Dockerisierung:
+mit Konsole in Unterordner LuefterPWM navigieren, dort dann:
 docker build -t "luefter_pwm:v1" .
 docker container run --privileged --name pwm_luefter -d luefter_pwm:v1
 
