@@ -1,6 +1,16 @@
-import RPi.GPIO as GPIO
 import time
+
+import RPi.GPIO as GPIO
 from gpiozero import CPUTemperature
+
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+console_handler = logging.StreamHandler()
+logging.getLogger().addHandler(console_handler)
+
+
 
 cpu = CPUTemperature()
 
@@ -11,7 +21,6 @@ cpu_temperature = cpu.temperature
 pwm_pin = 18
 
 pwm_frequency = 100
-
 
 GPIO.setmode(GPIO.BCM)
 
@@ -42,16 +51,17 @@ def set_pwm_level_by_temp(cpu_temperature):
 # GPIO.cleanup() necessary?
 
 # start fan with some moderate speed
-pwm.start(18)
+duty_cycle_percent = 18
+pwm.start(duty_cycle_percent)
 
 
 while True:
     cpu_temperature = cpu.temperature
-    duty_cycle_percent = set_pwm_level_by_temp(cpu_temperature)
+    new_duty_cycle_percent = set_pwm_level_by_temp(cpu_temperature)
     
-    print(f"Set PWM level to {duty_cycle_percent}%, since CPU temp is {cpu_temperature}°C")
-    pwm.ChangeDutyCycle(duty_cycle_percent)
-    
+    if new_duty_cycle_percent != duty_cycle_percent:
+        duty_cycle_percent = new_duty_cycle_percent
+        logging.info(f"Set PWM level to {duty_cycle_percent}%, since CPU temp is {cpu_temperature}°C")
+        pwm.ChangeDutyCycle(duty_cycle_percent)
     
     time.sleep(5)
-

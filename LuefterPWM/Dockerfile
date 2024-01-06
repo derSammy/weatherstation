@@ -1,9 +1,8 @@
-FROM python:3.11.7-slim-bookworm
+FROM python:3.11-bookworm
 
-WORKDIR /app
+COPY luefterPWM_Rasp4.py ./
+COPY requirements.txt ./
 
-COPY . /app
-
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["python", "luefterPWM_Rasp4.py"]

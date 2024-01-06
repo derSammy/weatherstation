@@ -127,6 +127,7 @@ SSH-Verbindung auf Raspberry einrichten, um komfortabler auf ihm entwickeln zu k
 - IP-Adresse des PI herausfinden (Fritz oder hostname -I auf dem PI)
 - ssh username@IP-ADRESS, Passwort wird erfragt, das wars. :)
 - ssh -Y username@IP-ADRESS, dann wird auch der X-Server durchgereicht, also z.B. mit "thonny" kann man den Editor auf dem PI aufmachen
+- oft benötigte Befehle: thonny (Editor), pcmanfm (File Manger)
 - davor hatte ich sudo apt-get install tightvncserver // tightvncserver // vncserver :1 -geometry 1920x1080 -depth 24 ausgeführt, aber denke darauf sollte es nicht ankommen.
 Vgl. auch hier:
 https://www.heise.de/tipps-tricks/Raspberry-Pi-SSH-einrichten-so-geht-s-4190645.html
@@ -171,12 +172,18 @@ PWM-Luefter-Steuerung
 https://www.raspberry-pi-geek.de/ausgaben/rpg/2022/08/temperaturabhaengige-lueftersteuerung-per-pwm/
 Vitaldaten vom System lassen sich mit dem psutil-Paket auslesen
 Siehe auch hier: https://indibit.de/raspberry-pi-cpu-auslastung-als-diagramm-auf-oled-display/
-Script läuft, Dockerisierung fehlt noch
+Script läuft
+Dockerisierung:
+docker build -t "luefter_pwm:v1" .
+docker container run --privileged --name pwm_luefter -d luefter_pwm:v1
+
 
 (13) Heimdall als Application Management System für alles auf dem Raspy nutzen
 https://heimdall.site/
 https://blog.berrybase.de/docker-auf-dem-raspberry-pi-basics/
-
+docker container run --privileged --name pwm_luefter -d luefter_pwm:v1
+... unklar, ob das "privileged" die beste option ist, tut aber mit der GPIO und CPU_temp_Auslesung
+noch fehlend: Logging
 
 Megacooles ähnliches Projekt:
 +  https://www.haraldkreuzer.net/aktuelles/bauanleitung-raspberry-pi-wetterstation-mit-wettervorhersage-und-esp32-funksensoren
