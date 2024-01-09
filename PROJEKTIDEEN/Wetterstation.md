@@ -10,13 +10,14 @@ Nutzername&PW werden hier vergeben.
 
 Raspi booten!
 
+
 (01)
 IP-Adresse vom RaspberryPi einrichten
 hostname -I -> aktuelle IP-Adresse. Bei mir: 192.168.178.25
 In Fritzbox: Haken gesetzt bei "immer die gleiche IPv4-Adresse zuweisen"
 vgl. ggf. auch https://www.elektronik-kompendium.de/sites/raspberry-pi/1912151.htm
 
-(02) Raspi über SSH
+(02) Zugriff auf Raspi über SSH
 ssh <UserName>@192.168.178.25
 -> Warnung
 ssh-keygen -f "/home/<UserName>/.ssh/known_hosts" -R "192.168.178.25"
@@ -36,8 +37,14 @@ sudo rpi-update
 
 sudo reboot
 
-(02)
-Docker-Installation:
+Hinweis: ssh -Y <USER>@<IP-Aresse> reicht auch den x-Server durch, dann kann man auch GUI-Programme wie:
+- thonny
+- pcmanfm
+usw. remote öffnen
+
+
+(02A)
+Docker- & Portainer-Installation:
 sudo apt install curl --> sollte schon drauf sein
 curl -fsSL https://get.docker.com -o get-docker.sh
 ls -l (Kontrolle, ob geklappt)
@@ -53,13 +60,24 @@ docker volume create portainer_data
 
 docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 
-
 http://192.168.178.25:9000/
 Passwort neu setzen, ist im KeePass
 
-(02A)
+(02B)
 Installation über IOT-Stack
 https://learnembeddedsystems.co.uk/easy-raspberry-pi-iot-server
+Im Kern ein Skript, was im IOTstack-Ordner abliegt. Dieses wird über den curl/bash-Befehl runtergeladen und ausgeführt
+
+
+sudo apt update
+sudo apt upgrade
+
+curl -fsSL https://raw.githubusercontent.com/SensorsIot/IOTstack/master/install.sh | bash
+sudo shutdown -r now
+Legt einen Ordner "IOTstack an und packt darin alles um via Docker (Compose) viele Dinge installieren zu können
+
+cd IOTstack/
+./menu.sh
 
 
 (1) Projektsetup
@@ -96,6 +114,7 @@ cd WeatherStation
 (2) Display
 + über HDMI auf Raspberry PI4 geschenkt
 + Auflösung 1024 x 600
+Spannungsversorgung läuft auch über USB vom Raspi aus 
 
 (3) Sensoren
 + BME280 laufen über I2C, zwei verschiedene Sensoren lassen sich über Pin-Induzierte Adressänderung realisieren
