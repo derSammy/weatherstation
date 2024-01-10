@@ -62,6 +62,11 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 
 http://192.168.178.25:9000/
 Passwort neu setzen, ist im KeePass
+siehe auch:
+https://blog.berrybase.de/docker-auf-dem-raspberry-pi-basics/
+
+... vermutlich obsolet, wenn man (02B) nutzt
+
 
 (02B)
 Installation über IOT-Stack
@@ -121,6 +126,11 @@ Spannungsversorgung läuft auch über USB vom Raspi aus
 ! vom sechspoligen Kabel zum Sensor werden dabei verwendet zwingend benötigt:
 VCC, GND, SCL, SDA, zwei Leitungen sind noch frei
 + Formel zur Höhenkalibration umgesetzt
+
+mit Konsole in Unterordner LuefterPWM navigieren, dort dann:
+docker build -t "bme280reader:v1" .
+docker container run --privileged --name bme280_reader -d bme280reader:v1
+
 
 (4)
 Anbindung der Abfahrtsanzeige der DVB
@@ -204,6 +214,13 @@ https://blog.berrybase.de/docker-auf-dem-raspberry-pi-basics/
 docker container run --privileged --name pwm_luefter -d luefter_pwm:v1
 ... unklar, ob das "privileged" die beste option ist, tut aber mit der GPIO und CPU_temp_Auslesung
 noch fehlend: Logging
+
+(14) Slideshow
+php-Script dafür im Ordner Slideshow
+Auf PC: php installiert
+php -S localhost:8000 wo das Script liegt (Bilder dabei im Unterordner pictures)
+http://localhost:8000/slideshow.php
+Dockerisierung fehlt noch
 
 Megacooles ähnliches Projekt:
 +  https://www.haraldkreuzer.net/aktuelles/bauanleitung-raspberry-pi-wetterstation-mit-wettervorhersage-und-esp32-funksensoren

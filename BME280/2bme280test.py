@@ -2,16 +2,27 @@ import time
 import smbus2
 import bme280
 
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+console_handler = logging.StreamHandler()
+logging.getLogger().addHandler(console_handler)
+
+
 # BME280 sensor address (default address)
 address_out = 0x77
 address_in = 0x76
 
 # Initialize I2C bus
 bus = smbus2.SMBus(1)
+logging.info("Initialized I2C bus")
+
 
 # Load calibration parameters
 calibration_params_out = bme280.load_calibration_params(bus, address_out)
 calibration_params_in = bme280.load_calibration_params(bus, address_in)
+logging.info("Loaded Calibrations")
 
 
 def convert_to_sealevel(abs_preasure, temperature):
@@ -42,9 +53,9 @@ while True:
     try:
         # Read sensor data
         data_out = bme280.sample(bus, address_out, calibration_params_out)
-        print(data_out)
+        #print(data_out)
         data_in = bme280.sample(bus, address_in, calibration_params_in	)
-        print(data_in)
+        #print(data_in)
 
 
         # Extract temperature, pressure, and humidity
@@ -59,18 +70,27 @@ while True:
         humidity_in = data_in.humidity
 
         # Print the readings
+        print("=== OUT ===")
         print("Temperature out: {:.2f} °C".format(temperature_celsius_out))
-        print("Absolute Pressure out: {:.2f} hPa".format(abs_pressure_out))
+        #print("Absolute Pressure out: {:.2f} hPa".format(abs_pressure_out))
         print("Sea-level Pressure out: {:.2f} hPa".format(sealevel_pressure_out))
-        print("Humidity out: {:.2f} %".format(humidity_out))
+        print("Humidity out: {:.2f} %\n".format(humidity_out))
+        logging.info("OUT: {:.2f} °C == ".format(temperature_celsius_out) +
+                     "{:.2f} hPa == ".format(sealevel_pressure_out) +
+                     "{:.2f} % LF".format(humidity_out))
         
+        print("--- IN ---")
         print("Temperature in: {:.2f} °C".format(temperature_celsius_in))
-        print("Absolute Pressure in: {:.2f} hPa".format(abs_pressure_in))
+        #print("Absolute Pressure in: {:.2f} hPa".format(abs_pressure_in))
         print("Sea-level Pressure in: {:.2f} hPa".format(sealevel_pressure_in))
-        print("Humidity in: {:.2f} %".format(humidity_in))
+        print("Humidity in: {:.2f} %\n".format(humidity_in))
+        logging.info("IN:  {:.2f} °C == ".format(temperature_celsius_in) +
+                     "{:.2f} hPa == ".format(sealevel_pressure_in) +
+                     "{:.2f} % LF".format(humidity_in))
+
 
         # Wait for a few seconds before the next reading
-        time.sleep(5)
+        time.sleep(60)
 
     except KeyboardInterrupt:
         print('Program stopped')

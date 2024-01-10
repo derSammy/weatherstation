@@ -1,9 +1,9 @@
-FROM python:3.11-alpine
+FROM php:alpine
 
-COPY luefterPWM_Rasp4.py requirements.txt ./
+WORKDIR /app
 
-RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
-    && pip install --no-cache-dir -r requirements.txt \
-    && apk del .build-deps
+COPY slideshow.php ./
 
-CMD ["python", "luefterPWM_Rasp4.py"]
+EXPOSE 80
+
+CMD ["php", "-S", "0.0.0.0:80", "slideshow.php"]
