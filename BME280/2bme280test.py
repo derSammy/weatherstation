@@ -11,8 +11,8 @@ logging.getLogger().addHandler(console_handler)
 
 
 # BME280 sensor address (default address)
-address_out = 0x77
-address_in = 0x76
+address_out = 0x76
+address_in = 0x77
 
 # Initialize I2C bus
 bus = smbus2.SMBus(1)
