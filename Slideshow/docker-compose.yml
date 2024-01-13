@@ -6,4 +6,4 @@ services:
     volumes:
       - /home/samuel/Pictures:/app/pictures
     ports:
-      - "8081:80"
+      - "3000:3000"

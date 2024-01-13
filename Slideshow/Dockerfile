@@ -1,9 +1,8 @@
 FROM php:alpine
 
-WORKDIR /app
+COPY ./slideshow4.php ./
+# COPY ./pictures/*.* ./pictures/
 
-COPY slideshow2.php ./
+EXPOSE 3000
 
-EXPOSE 80
-
-CMD ["php", "-S", "0.0.0.0:80", "slideshow2.php"]
+CMD ["php", "-S", "0.0.0.0:3000"]

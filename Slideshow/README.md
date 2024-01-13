@@ -1,1 +1,1 @@
-docker run -v ../../../Pictures:/pictures
+docker run -v /home/samuel/Pictures:/app/pictures -p 3000:3000 --name slideshowcontainer slideshowimage
