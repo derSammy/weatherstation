@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  slideshow:
+    image: slideshowimage:latest
+    volumes:
+      - /home/samuel/Pictures:/app/pictures
+    ports:
+      - "8081:80"
