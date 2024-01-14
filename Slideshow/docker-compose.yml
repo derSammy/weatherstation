@@ -2,7 +2,7 @@ version: '3'
 
 services:
   slideshow:
-    image: slideshowimage:latest
+    image: slideshow:latest
     volumes:
       - /home/samuel/Pictures:/app/pictures
     ports:

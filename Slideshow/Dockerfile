@@ -1,6 +1,6 @@
 FROM php:alpine
 
-COPY ./slideshow4.php ./
+COPY ./slideshow.php ./
 # COPY ./pictures/*.* ./pictures/
 
 EXPOSE 3000
