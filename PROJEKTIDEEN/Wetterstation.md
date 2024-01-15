@@ -119,7 +119,16 @@ cd WeatherStation
 (2) Display
 + über HDMI auf Raspberry PI4 geschenkt
 + Auflösung 1024 x 600
-Spannungsversorgung läuft auch über USB vom Raspi aus 
+Spannungsversorgung läuft auch über USB vom Raspi aus
+der linke Ausgang vom Raspi ist HDMI-1, der rechte HDMI-2 (den ich nutze)
+Das Display lässt sich über die Console via
+DISPLAY=:0.0 xrandr --output HDMI-2 --off 
+ausschalten und via
+DISPLAY=:0.0 xrandr --output HDMI-2 --mode 1024x600 --rate 60 
+wieder einschalten
+Quelle: https://www.thedigitalpictureframe.com/xrandr-the-new-command-to-turn-your-connected-monitor-on-and-off/
+
+
 
 (3) Sensoren
 + BME280 laufen über I2C, zwei verschiedene Sensoren lassen sich über Pin-Induzierte Adressänderung realisieren

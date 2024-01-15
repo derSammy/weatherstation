@@ -2,8 +2,8 @@ version: '3'
 
 services:
   slideshow:
-    image: slideshow:latest
+    build: .
     volumes:
       - /home/samuel/Pictures:/app/pictures
     ports:
-      - "3000:3000"
+      - "3050:3050"
