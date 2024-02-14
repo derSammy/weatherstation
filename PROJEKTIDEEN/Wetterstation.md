@@ -127,6 +127,11 @@ ausschalten und via
 DISPLAY=:0.0 xrandr --output HDMI-2 --mode 1024x600 --rate 60 
 wieder einschalten
 Quelle: https://www.thedigitalpictureframe.com/xrandr-the-new-command-to-turn-your-connected-monitor-on-and-off/
+Das Python-Skript zur automatischen Display-An-Ab-Schaltung liegt im Ordner PIRSensor. Dort in der Console:
+
+leider noch nicht funktional, das Skript schon
+docker build -t "pirsensor:v1" .
+docker container run --privileged --name pirsensor -d pirsensor:v1
 
 
 
